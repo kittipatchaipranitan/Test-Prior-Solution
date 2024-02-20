@@ -13,7 +13,6 @@ const Acep = () => {
         const startDate = new Date('2023-06-01');
         const endDate = new Date('2023-08-31');
 
-
         if (!data || !data.date) {
             return 'data or data.date is undefined';
         }
@@ -21,7 +20,6 @@ const Acep = () => {
         const dataDateObj = new Date(data.date);
         dataDateObj.setFullYear(dataDateObj.getFullYear() + 65);
 
-        
         if (dataDateObj <= endDate) {
             return 'working';
         } else {
@@ -31,51 +29,45 @@ const Acep = () => {
             const twoYearsAfterStartDate = new Date(startDate);
             twoYearsAfterStartDate.setFullYear(startDate.getFullYear() + 2);
 
-            // Condition for "within 6 months before startDate and up to 2 years after"
             if ((originalDataDate >= sixMonthsBeforeStartDate && originalDataDate <= startDate) ||
                 (originalDataDate > startDate && originalDataDate <= twoYearsAfterStartDate)) {
-                return <span class="text-green-500">สามารถเข้ารับบริการได้</span>;
+                return <span className="text-green-500">สามารถเข้ารับบริการได้</span>;
             } else {
-                return <span class="text-red-500">ไม่สามารถเข้ารับบริการได้</span>;
+                return <span className="text-red-500">ไม่สามารถเข้ารับบริการได้</span>;
             }
         }
     }
 
     return (
-        <div className="relative flex justify-end pr-48 items-center h-screen bg-no-repeat bg-cover bg-center bg-[url('https://www.cdg.co.th/website/wp-content/uploads/2023/05/Press-Release-Vaccine.webp')] font-sarabun">
-            {/* Overlay to lighten the background image */}
+        <div className="relative flex justify-center items-center min-h-screen bg-no-repeat bg-cover bg-center bg-[url('https://www.cdg.co.th/website/wp-content/uploads/2023/05/Press-Release-Vaccine.webp')] font-sarabun">
             <div className="absolute inset-0 bg-white opacity-20"></div>
-            {/* Content container */}
-            <div className="container max-w-sm p-6 bg-white rounded-lg shadow-lg z-10 relative">
-                <h1 className="text-center text-3xl font-semibold text-[#49B1DD] mb-8">ข้อมูลการลงทะเบียน</h1>
-                <div className="registration-info space-y-4">
-                    <div className="info-item">
-                        <label className="text-[#49B1DD] ">ชื่อ-นามสกุล</label>
-                        <p className="p-2 bg-[#49B1DD]/20  rounded-md">{data.name}</p>
+            <div className="container max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-4 md:p-6 bg-white rounded-lg shadow-lg z-10">
+                <h1 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold text-[#49B1DD] mb-4 md:mb-8">ข้อมูลการลงทะเบียน</h1>
+                <div className="space-y-4">
+                    <div>
+                        <label className="text-[#49B1DD]">ชื่อ-นามสกุล</label>
+                        <p className="p-2 bg-[#49B1DD]/20 rounded-md">{data.name}</p>
                     </div>
-                    <div className="info-item">
+                    <div>
                         <label className="text-[#49B1DD]">เลขบัตรประชาชน</label>
-                        <p className="p-2 bg-[#49B1DD]/20  rounded-md">{formatID(data.id)}</p>
+                        <p className="p-2 bg-[#49B1DD]/20 rounded-md">{formatID(data.id)}</p>
                     </div>
-                    <div className="info-item">
+                    <div>
                         <label className="text-[#49B1DD]">เพศ</label>
-                        <p className="p-2 bg-[#49B1DD]/20  rounded-md">{data.sex}</p>
+                        <p className="p-2 bg-[#49B1DD]/20 rounded-md">{data.sex}</p>
                     </div>
-                    <div className="info-item">
+                    <div>
                         <label className="text-[#49B1DD]">วัน/เดือน/ปีเกิด</label>
-                        <p className="p-2 bg-[#49B1DD]/20  rounded-md">{data.date}</p>
+                        <p className="p-2 bg-[#49B1DD]/20 rounded-md">{data.date}</p>
                     </div>
                 </div>
-                <div className='text-center text-2xl mt-2  text-[#5C8A9E] font-bold'>
+                <div className='text-center text-lg sm:text-xl md:text-2xl mt-2 text-[#5C8A9E] font-bold'>
                     {permissions(data)}
-                   
                 </div>
                 <div className="text-center mt-8">
-                    <Link to="/" className="ease-in-out delay-150 over:-translate-y-1 hover:scale-90  inline-block w-full bg-[#3389B0] text-white font-bold py-3 px-6 rounded-md hover:bg-[#46AAD5] transition duration-300">กลับหน้าหลัก</Link>
+                    <Link to="/" className="ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 inline-block w-full bg-[#3389B0] text-white font-bold py-2 sm:py-3 px-4 rounded-md hover:bg-[#46AAD5] transition duration-300">กลับหน้าหลัก</Link>
                 </div>
             </div>
-
-
         </div>
     );
 };
